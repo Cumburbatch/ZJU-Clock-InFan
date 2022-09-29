@@ -2,17 +2,16 @@ name: ClockIn
 
 on:
   push:
-    branches: 
-      - master
-  watch:
-    types: started
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   schedule:
-    - cron: 0 */12 * * *
+    - cron: '01/10 * * * *'
+  workflow_dispatch:
 
 jobs:
   ClockIn:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
         uses: actions/checkout@master
